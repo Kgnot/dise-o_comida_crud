@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
+
+    <persistence-unit name="CRUDfood" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>proj.food.entity.CustomerEntity</class>
+
+        <properties>
+            <!-- Hibernate -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="false"/>
+            <!-- HikariCP -->
+            <property name="hibernate.hikari.minimumIdle" value="5"/>
+            <property name="hibernate.hikari.maximumPoolSize" value="15"/>
+            <property name="hibernate.hikari.poolName" value="CRM-Write-Pool"/>
+        </properties>
+    </persistence-unit>
+
+
+
+</persistence>
