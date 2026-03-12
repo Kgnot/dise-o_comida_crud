@@ -1,4 +1,4 @@
-package proj.food.config.database.connect;
+package proj.food.config.app_context.database.connect;
 
 public class ConnectDatabase extends Connect {
 

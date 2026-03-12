@@ -1,9 +1,9 @@
-package proj.food.config.database.connect;
+package proj.food.config.app_context.database.connect;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import proj.food.config.database.error.EstablishConnectionError;
+import proj.food.config.app_context.database.error.EstablishConnectionError;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +33,7 @@ public abstract class Connect {
         overrides.put("jakarta.persistence.jdbc.url", URL);
         overrides.put("jakarta.persistence.jdbc.user", USER);
         overrides.put("jakarta.persistence.jdbc.password", PASSWORD);
-        entityManagerFactory = Persistence.createEntityManagerFactory(this.DB_NAME, overrides);
+        entityManagerFactory = Persistence.createEntityManagerFactory(DB_NAME, overrides);
     }
 
     public EntityManager getEntityManagerFactory() {

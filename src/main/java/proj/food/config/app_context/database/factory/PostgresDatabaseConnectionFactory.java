@@ -1,8 +1,8 @@
-package proj.food.config.database.factory;
+package proj.food.config.app_context.database.factory;
 
 import proj.food.config.AppProperties;
-import proj.food.config.database.connect.Connect;
-import proj.food.config.database.connect.ConnectDatabase;
+import proj.food.config.app_context.database.connect.Connect;
+import proj.food.config.app_context.database.connect.ConnectDatabase;
 
 import java.util.logging.Logger;
 
