@@ -90,6 +90,21 @@ public class CustomerViewSwing extends JFrame implements CustomerView {
     }
 
     @Override
+    public void insertCustomer() {
+
+    }
+
+    @Override
+    public void updateCustomer() {
+
+    }
+
+    @Override
+    public void deleteCustomer() {
+
+    }
+
+    @Override
     public void showError(String message) {
         JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
     }

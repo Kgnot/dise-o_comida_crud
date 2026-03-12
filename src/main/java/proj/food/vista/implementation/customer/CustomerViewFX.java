@@ -101,6 +101,21 @@ public class CustomerViewFX implements CustomerView {
     }
 
     @Override
+    public void insertCustomer() {
+
+    }
+
+    @Override
+    public void updateCustomer() {
+
+    }
+
+    @Override
+    public void deleteCustomer() {
+
+    }
+
+    @Override
     public void showError(String message) {
         FxRuntime.runOnFxThread(() -> {
             Alert alert = new Alert(Alert.AlertType.ERROR);

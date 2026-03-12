@@ -23,7 +23,7 @@ public class CustomerViewController {
                 showCustomerList();
                 break;
             case "2":
-                exit();
+                customerView.insertCustomer();
                 break;
             default:
                 customerView.showError("Invalid option");
@@ -34,6 +34,33 @@ public class CustomerViewController {
     public void showCustomerList() {
         List<CustomerDto> customerDtos = customerService.findAll();
         customerView.showCustomerList(customerDtos);
+    }
+
+    public void insertCustomer(CustomerDto newCustomer) {
+        try {
+            customerService.save(newCustomer);
+            showCustomerList();
+        } catch (Exception e) {
+            customerView.showError("Error inserting customer: " + e.getMessage());
+        }
+    }
+
+    public void updateCustomer(CustomerDto updatedCustomer) {
+        try {
+            customerService.save(updatedCustomer);
+            showCustomerList();
+        } catch (Exception e) {
+            customerView.showError("Error updating customer: " + e.getMessage());
+        }
+    }
+
+    public void deleteCustomer(CustomerDto deletedCustomer) {
+        try {
+            customerService.deleteById(deletedCustomer.id());
+            showCustomerList();
+        } catch (Exception e) {
+            customerView.showError("Error deleting customer: " + e.getMessage());
+        }
     }
 
     private void exit() {
