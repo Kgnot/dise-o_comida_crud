@@ -1,12 +1,12 @@
 package proj.food.services.food;
 
-import proj.food.entity.FoodEntity;
 import proj.food.repository.food.FoodRepository;
+import proj.food.services.dto.FoodDto;
+import proj.food.services.mapper.FoodMapper;
 
 import java.util.List;
 
 public class FoodServiceImpl implements FoodService {
-
 
     private final FoodRepository foodRepository;
 
@@ -15,18 +15,18 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public List<FoodEntity> findAll() {
-        return foodRepository.findAll();
+    public List<FoodDto> findAll() {
+        return FoodMapper.toDtoList(foodRepository.findAll());
     }
 
     @Override
-    public FoodEntity findById(Long id) {
-        return foodRepository.findById(id);
+    public FoodDto findById(Long id) {
+        return FoodMapper.toDto(foodRepository.findById(id));
     }
 
     @Override
-    public void save(FoodEntity foodEntity) {
-        foodRepository.save(foodEntity);
+    public void save(FoodDto foodDto) {
+        foodRepository.save(FoodMapper.toEntity(foodDto));
     }
 
     @Override

@@ -1,17 +1,16 @@
 package proj.food.services.customer;
 
-import proj.food.entity.CustomerEntity;
+import proj.food.services.dto.CustomerDto;
 
 import java.util.List;
 
 public interface CustomerService {
 
-    List<CustomerEntity> findAll();
+    List<CustomerDto> findAll();
 
-    CustomerEntity findById(Long id);
+    CustomerDto findById(Long id);
 
-    void save(CustomerEntity customer);
+    void save(CustomerDto customer);
 
     void deleteById(Long id);
-
 }

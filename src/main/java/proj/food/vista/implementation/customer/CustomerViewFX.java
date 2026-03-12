@@ -16,7 +16,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import proj.food.controller.CustomerViewController;
-import proj.food.entity.CustomerEntity;
+import proj.food.services.dto.CustomerDto;
 import proj.food.vista.implementation.fx.FxRuntime;
 import proj.food.vista.interfaces.CustomerView;
 import proj.food.vista.mediatr.MediatorView;
@@ -27,7 +27,7 @@ public class CustomerViewFX implements CustomerView {
 
     private CustomerViewController controller;
     private MediatorView mediator;
-    private TableView<CustomerEntity> tableView;
+    private TableView<CustomerDto> tableView;
     private Label statusLabel;
     private Stage stage;
 
@@ -43,13 +43,13 @@ public class CustomerViewFX implements CustomerView {
             return;
         }
 
-        TableColumn<CustomerEntity, String> colId = new TableColumn<>("ID");
+        TableColumn<CustomerDto, String> colId = new TableColumn<>("ID");
         colId.setCellValueFactory(c -> new SimpleStringProperty(
-                c.getValue().getId() == null ? "" : c.getValue().getId().toString()));
+                c.getValue().id() == null ? "" : c.getValue().id().toString()));
         colId.setPrefWidth(80);
 
-        TableColumn<CustomerEntity, String> colName = new TableColumn<>("Name");
-        colName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getName()));
+        TableColumn<CustomerDto, String> colName = new TableColumn<>("Name");
+        colName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().name()));
         colName.setPrefWidth(300);
 
         tableView = new TableView<>();
@@ -90,9 +90,9 @@ public class CustomerViewFX implements CustomerView {
     }
 
     @Override
-    public void showCustomerList(List<CustomerEntity> entities) {
+    public void showCustomerList(List<CustomerDto> entities) {
         FxRuntime.runOnFxThread(() -> {
-            ObservableList<CustomerEntity> data = FXCollections.observableArrayList(entities);
+            ObservableList<CustomerDto> data = FXCollections.observableArrayList(entities);
             tableView.setItems(data);
             statusLabel.setText(entities.isEmpty()
                     ? "No customers found."

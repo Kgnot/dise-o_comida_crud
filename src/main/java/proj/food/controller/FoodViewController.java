@@ -1,8 +1,11 @@
 package proj.food.controller;
 
 import proj.food.config.app_context.ApplicationContext;
+import proj.food.services.dto.FoodDto;
 import proj.food.services.food.FoodService;
 import proj.food.vista.interfaces.FoodView;
+
+import java.util.List;
 
 public class FoodViewController {
 
@@ -17,7 +20,8 @@ public class FoodViewController {
     public void processMenuOption(String option) {
         switch (option) {
             case "1":
-                System.out.println("Showing food list... total: " + foodService.findAll().size());
+                List<FoodDto> foods = foodService.findAll();
+                System.out.println("Showing food list... total: " + foods.size());
                 break;
             case "2":
                 System.out.println("Exiting Food View...");

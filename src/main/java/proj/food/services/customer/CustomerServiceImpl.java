@@ -1,7 +1,8 @@
 package proj.food.services.customer;
 
-import proj.food.entity.CustomerEntity;
 import proj.food.repository.customer.CustomerRepository;
+import proj.food.services.dto.CustomerDto;
+import proj.food.services.mapper.CustomerMapper;
 
 import java.util.List;
 
@@ -14,18 +15,18 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerEntity> findAll() {
-        return customerRepository.findAll();
+    public List<CustomerDto> findAll() {
+        return CustomerMapper.toDtoList(customerRepository.findAll());
     }
 
     @Override
-    public CustomerEntity findById(Long id) {
-        return customerRepository.findById(id);
+    public CustomerDto findById(Long id) {
+        return CustomerMapper.toDto(customerRepository.findById(id));
     }
 
     @Override
-    public void save(CustomerEntity customer) {
-        customerRepository.save(customer);
+    public void save(CustomerDto customer) {
+        customerRepository.save(CustomerMapper.toEntity(customer));
     }
 
     @Override

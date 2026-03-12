@@ -1,10 +1,9 @@
 package proj.food.vista.implementation.customer;
 
 import proj.food.controller.CustomerViewController;
-import proj.food.entity.CustomerEntity;
+import proj.food.services.dto.CustomerDto;
 import proj.food.vista.interfaces.CustomerView;
 import proj.food.vista.mediatr.MediatorView;
-import proj.food.vista.mediatr.MediatorViewImpl;
 
 import java.util.List;
 import java.util.Scanner;
@@ -37,13 +36,13 @@ public class CustomerViewConsole implements CustomerView {
     }
 
     @Override
-    public void showCustomerList(List<CustomerEntity> entities) {
+    public void showCustomerList(List<CustomerDto> dtos) {
         System.out.println("\n=== CUSTOMER LIST ===");
-        if (entities.isEmpty()) {
+        if (dtos.isEmpty()) {
             System.out.println("No customers found.");
         } else {
-            for (CustomerEntity entity : entities) {
-                System.out.println("ID: " + entity.getId() + ", Name: " + entity.getName());
+            for (CustomerDto dto : dtos) {
+                System.out.println("ID: " + dto.id() + ", Name: " + dto.name());
             }
         }
     }

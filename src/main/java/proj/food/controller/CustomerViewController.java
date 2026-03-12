@@ -1,8 +1,8 @@
 package proj.food.controller;
 
 import proj.food.config.app_context.ApplicationContext;
-import proj.food.entity.CustomerEntity;
 import proj.food.services.customer.CustomerService;
+import proj.food.services.dto.CustomerDto;
 import proj.food.vista.interfaces.CustomerView;
 
 import java.util.List;
@@ -32,8 +32,8 @@ public class CustomerViewController {
     }
 
     public void showCustomerList() {
-        List<CustomerEntity> customerEntities = customerService.findAll();
-        customerView.showCustomerList(customerEntities);
+        List<CustomerDto> customerDtos = customerService.findAll();
+        customerView.showCustomerList(customerDtos);
     }
 
     private void exit() {

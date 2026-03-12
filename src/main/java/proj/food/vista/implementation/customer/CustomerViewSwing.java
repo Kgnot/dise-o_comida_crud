@@ -1,7 +1,7 @@
 package proj.food.vista.implementation.customer;
 
 import proj.food.controller.CustomerViewController;
-import proj.food.entity.CustomerEntity;
+import proj.food.services.dto.CustomerDto;
 import proj.food.vista.interfaces.CustomerView;
 import proj.food.vista.mediatr.MediatorView;
 
@@ -79,12 +79,12 @@ public class CustomerViewSwing extends JFrame implements CustomerView {
     }
 
     @Override
-    public void showCustomerList(List<CustomerEntity> entities) {
+    public void showCustomerList(List<CustomerDto> entities) {
         tableModel.setRowCount(0);
         if (entities.isEmpty()) {
             statusLabel.setText("No customers found.");
         } else {
-            entities.forEach(e -> tableModel.addRow(new Object[]{e.getId(), e.getName()}));
+            entities.forEach(e -> tableModel.addRow(new Object[]{e.id(), e.name()}));
             statusLabel.setText(entities.size() + " customer(s) loaded.");
         }
     }
@@ -104,4 +104,3 @@ public class CustomerViewSwing extends JFrame implements CustomerView {
         this.mediator = mv;
     }
 }
-

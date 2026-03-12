@@ -1,18 +1,16 @@
 package proj.food.services.food;
 
-import proj.food.entity.FoodEntity;
+import proj.food.services.dto.FoodDto;
 
 import java.util.List;
 
 public interface FoodService {
 
-    List<FoodEntity> findAll();
+    List<FoodDto> findAll();
 
-    FoodEntity findById(Long id);
+    FoodDto findById(Long id);
 
-    void save(FoodEntity foodEntity);
+    void save(FoodDto foodDto);
 
     void deleteById(Long id);
-
-
 }
