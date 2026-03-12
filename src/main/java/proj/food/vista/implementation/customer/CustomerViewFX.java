@@ -8,20 +8,24 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import proj.food.controller.CustomerViewController;
 import proj.food.services.dto.CustomerDto;
+import proj.food.vista.ViewType;
 import proj.food.vista.implementation.fx.FxRuntime;
 import proj.food.vista.interfaces.CustomerView;
 import proj.food.vista.mediatr.MediatorView;
 
 import java.util.List;
+import java.util.Optional;
 
 public class CustomerViewFX implements CustomerView {
 
@@ -57,12 +61,18 @@ public class CustomerViewFX implements CustomerView {
         tableView.getColumns().addAll(colId, colName);
 
         Button btnShowList = new Button("Show Customer List");
+        Button btnInsert = new Button("Insert Customer");
+        Button btnUpdate = new Button("Update Customer");
+        Button btnDelete = new Button("Delete Customer");
         Button btnExit = new Button("Exit");
 
         btnShowList.setOnAction(e -> getController().processMenuOption("1"));
-        btnExit.setOnAction(e -> getController().processMenuOption("2"));
+        btnInsert.setOnAction(e -> getController().processMenuOption("2"));
+        btnUpdate.setOnAction(e -> getController().processMenuOption("3"));
+        btnDelete.setOnAction(e -> getController().processMenuOption("4"));
+        btnExit.setOnAction(e -> getController().processMenuOption("5"));
 
-        HBox buttonBar = new HBox(12, btnShowList, btnExit);
+        HBox buttonBar = new HBox(10, btnShowList, btnInsert, btnUpdate, btnDelete, btnExit);
         buttonBar.setAlignment(Pos.CENTER);
         buttonBar.setPadding(new Insets(8, 0, 4, 0));
 
@@ -77,7 +87,7 @@ public class CustomerViewFX implements CustomerView {
 
         stage = new Stage();
         stage.setTitle("Customer Manager");
-        stage.setScene(new Scene(root, 550, 420));
+        stage.setScene(new Scene(root, 780, 440));
     }
 
     @Override
@@ -102,17 +112,75 @@ public class CustomerViewFX implements CustomerView {
 
     @Override
     public void insertCustomer() {
+        FxRuntime.runOnFxThread(() -> {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Insert Customer");
+            dialog.setHeaderText("Create new customer");
+            dialog.setContentText("Name:");
 
+            Optional<String> result = dialog.showAndWait();
+            if (result.isEmpty()) {
+                return;
+            }
+
+            String name = result.get().trim();
+            if (name.isEmpty()) {
+                showError("Name is required");
+                return;
+            }
+
+            getController().insertCustomer(new CustomerDto(null, name));
+        });
     }
 
     @Override
     public void updateCustomer() {
+        FxRuntime.runOnFxThread(() -> {
+            CustomerDto selected = tableView.getSelectionModel().getSelectedItem();
+            if (selected == null) {
+                showError("Select a customer from the table to update");
+                return;
+            }
 
+            TextInputDialog dialog = new TextInputDialog(selected.name());
+            dialog.setTitle("Update Customer");
+            dialog.setHeaderText("Update customer #" + selected.id());
+            dialog.setContentText("New name:");
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isEmpty()) {
+                return;
+            }
+
+            String newName = result.get().trim();
+            if (newName.isEmpty()) {
+                showError("Name is required");
+                return;
+            }
+
+            getController().updateCustomer(new CustomerDto(selected.id(), newName));
+        });
     }
 
     @Override
     public void deleteCustomer() {
+        FxRuntime.runOnFxThread(() -> {
+            CustomerDto selected = tableView.getSelectionModel().getSelectedItem();
+            if (selected == null) {
+                showError("Select a customer from the table to delete");
+                return;
+            }
 
+            Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+            confirm.setTitle("Delete Customer");
+            confirm.setHeaderText("Delete customer #" + selected.id());
+            confirm.setContentText("Are you sure?");
+
+            Optional<ButtonType> choice = confirm.showAndWait();
+            if (choice.isPresent() && choice.get() == ButtonType.OK) {
+                getController().deleteCustomer(new CustomerDto(selected.id(), null));
+            }
+        });
     }
 
     @Override
@@ -130,7 +198,10 @@ public class CustomerViewFX implements CustomerView {
     public void exit() {
         FxRuntime.runOnFxThread(() -> {
             if (stage != null) {
-                stage.close();
+                stage.hide();
+            }
+            if (mediator != null) {
+                mediator.changeView(ViewType.START);
             }
         });
     }

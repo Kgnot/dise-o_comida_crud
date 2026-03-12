@@ -25,7 +25,7 @@ public class CustomerViewConsole implements CustomerView {
         System.out.println("2. Insert New Customer");
         System.out.println("3. Update Existing Customer");
         System.out.println("4. Delete Customer");
-        System.out.println("3. Exit");
+        System.out.println("5. Exit");
         System.out.print("Choose an option: ");
 
         String option = scanner.nextLine();
@@ -54,6 +54,7 @@ public class CustomerViewConsole implements CustomerView {
     @Override
     public void insertCustomer() {
         System.out.println("Para insertar un usuario necesitamos su nombre:");
+        System.out.print("Name: ");
         String name = scanner.nextLine();
         CustomerDto newCustomer = new CustomerDto(null, name);
         getController().insertCustomer(newCustomer);
@@ -102,7 +103,9 @@ public class CustomerViewConsole implements CustomerView {
     public void exit() {
         System.out.println("Exiting Customer View...");
         scanner.close();
-        mediator.changeView(ViewType.START); // Volver a la vista de inicio después de salir
+        if (mediator != null) {
+            mediator.changeView(ViewType.START);
+        }
     }
 
     @Override

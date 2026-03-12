@@ -16,9 +16,9 @@ public class MainApp {
         ApplicationContext.getInstance();
 
         MediatorViewImpl mediator = new MediatorViewImpl();
-        mediator.addView(ViewType.START, new StartViewImplConsole());
-        mediator.addView(ViewType.FOOD, new FoodViewConsole());
-        mediator.addView(ViewType.CUSTOMER, new CustomerViewConsole());
+        mediator.addView(ViewType.START, new StartViewImplFX());
+        mediator.addView(ViewType.FOOD, new FoodViewFX());
+        mediator.addView(ViewType.CUSTOMER, new CustomerViewFX());
         mediator.changeView(ViewType.START);
     }
 

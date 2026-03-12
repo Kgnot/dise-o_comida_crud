@@ -25,6 +25,15 @@ public class CustomerViewController {
             case "2":
                 customerView.insertCustomer();
                 break;
+            case "3":
+                customerView.updateCustomer();
+                break;
+            case "4":
+                customerView.deleteCustomer();
+                break;
+            case "5":
+                exit();
+                break;
             default:
                 customerView.showError("Invalid option");
                 customerView.showMenu();
