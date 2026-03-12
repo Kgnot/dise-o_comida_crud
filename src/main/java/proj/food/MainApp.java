@@ -20,9 +20,9 @@ public class MainApp {
 
         MediatorViewImpl mediator = new MediatorViewImpl();
         // vistas:
-        mediator.addView(ViewType.START, new StartViewImplSwing());
+        mediator.addView(ViewType.START, new StartViewImplFX());
         mediator.addView(ViewType.FOOD, new FoodViewConsole());
-        mediator.addView(ViewType.CUSTOMER, new CustomerViewSwing());
+        mediator.addView(ViewType.CUSTOMER, new CustomerViewFX());
         //
         mediator.changeView(ViewType.START);
     }

@@ -1,6 +1,5 @@
 package proj.food.vista.implementation.start;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,10 +9,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import proj.food.controller.StartViewController;
 import proj.food.vista.ViewType;
+import proj.food.vista.implementation.fx.FxRuntime;
 import proj.food.vista.interfaces.StartView;
 import proj.food.vista.mediatr.MediatorView;
 
-public class StartViewImplFX extends Application implements StartView {
+public class StartViewImplFX implements StartView {
 
     private StartViewController controller;
     private MediatorView mediator;
@@ -26,9 +26,10 @@ public class StartViewImplFX extends Application implements StartView {
         return controller;
     }
 
-    @Override
-    public void start(Stage primaryStage) {
-        this.stage = primaryStage;
+    private void createStageIfNeeded() {
+        if (stage != null) {
+            return;
+        }
 
         Label header = new Label("Bienvenidos a la plataforma de comida!");
         header.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
@@ -45,31 +46,43 @@ public class StartViewImplFX extends Application implements StartView {
         root.setAlignment(Pos.CENTER);
         root.setPadding(new Insets(16));
 
-        primaryStage.setTitle("Start View");
-        primaryStage.setScene(new Scene(root, 430, 260));
-        primaryStage.show();
+        stage = new Stage();
+        stage.setTitle("Start View");
+        stage.setScene(new Scene(root, 430, 260));
     }
 
     @Override
     public void showMenu() {
-        Application.launch(StartViewImplFX.class);
+        FxRuntime.runOnFxThread(() -> {
+            createStageIfNeeded();
+            stage.show();
+            stage.toFront();
+        });
     }
 
     @Override
     public void exit() {
-        if (stage != null) {
-            stage.close();
-        }
-        System.exit(0);
+        FxRuntime.runOnFxThread(() -> {
+            if (stage != null) {
+                stage.close();
+            }
+            System.exit(0);
+        });
     }
 
     @Override
     public void goToFoodView() {
+        if (stage != null) {
+            stage.hide();
+        }
         mediator.changeView(ViewType.FOOD);
     }
 
     @Override
     public void goToCustomerView() {
+        if (stage != null) {
+            stage.hide();
+        }
         mediator.changeView(ViewType.CUSTOMER);
     }
 
@@ -78,4 +91,3 @@ public class StartViewImplFX extends Application implements StartView {
         this.mediator = mv;
     }
 }
-
