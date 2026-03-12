@@ -1,4 +1,4 @@
-package proj.food.vista.implementation.food;
+package proj.food.vista.implementation.fx.food;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

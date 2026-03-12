@@ -1,10 +1,9 @@
-package proj.food.vista.implementation.start;
+package proj.food.vista.implementation.console.start;
 
 import proj.food.controller.StartViewController;
 import proj.food.vista.ViewType;
 import proj.food.vista.interfaces.StartView;
 import proj.food.vista.mediatr.MediatorView;
-import proj.food.vista.mediatr.MediatorViewImpl;
 
 import java.util.Scanner;
 

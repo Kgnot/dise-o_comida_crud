@@ -1,4 +1,4 @@
-package proj.food.vista.implementation.start;
+package proj.food.vista.implementation.fx.start;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
