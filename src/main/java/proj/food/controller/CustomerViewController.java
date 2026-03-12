@@ -1,6 +1,7 @@
 package proj.food.controller;
 
 import proj.food.entity.CustomerEntity;
+import proj.food.services.customer.CustomerService;
 import proj.food.vista.interfaces.CustomerView;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 public class CustomerViewController {
 
     private final CustomerView customerView;
-
+    private final CustomerService customerService;
 
     public CustomerViewController(CustomerView customerView) {
         this.customerView = customerView;
