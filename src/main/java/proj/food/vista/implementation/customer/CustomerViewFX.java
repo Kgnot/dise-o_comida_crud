@@ -13,20 +13,22 @@ import javafx.stage.Stage;
 import proj.food.controller.CustomerViewController;
 import proj.food.entity.CustomerEntity;
 import proj.food.vista.interfaces.CustomerView;
+import proj.food.vista.mediatr.MediatorView;
 
 import java.util.List;
 
 public class CustomerViewFX extends Application implements CustomerView {
 
     private CustomerViewController controller;
-
+    private MediatorView mediator;
     private TableView<CustomerEntity> tableView;
     private Label statusLabel;
     private Stage stage;
 
     // JavaFX necesita un constructor sin args para Application.launch()
     // El controller se inicializa en start()
-    public CustomerViewFX() {}
+    public CustomerViewFX() {
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -49,10 +51,10 @@ public class CustomerViewFX extends Application implements CustomerView {
 
         // ── Botones ────────────────────────────────────────────
         Button btnShowList = new Button("Show Customer List");
-        Button btnExit     = new Button("Exit");
+        Button btnExit = new Button("Exit");
 
         btnShowList.setOnAction(e -> controller.processMenuOption("1"));
-        btnExit.setOnAction(e     -> controller.processMenuOption("2"));
+        btnExit.setOnAction(e -> controller.processMenuOption("2"));
 
         HBox buttonBar = new HBox(12, btnShowList, btnExit);
         buttonBar.setAlignment(Pos.CENTER);
@@ -102,6 +104,11 @@ public class CustomerViewFX extends Application implements CustomerView {
     @Override
     public void exit() {
         if (stage != null) stage.close();
+    }
+
+    @Override
+    public void setMediator(MediatorView mv) {
+        this.mediator = mv;
     }
 }
 

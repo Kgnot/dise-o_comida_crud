@@ -1,9 +1,10 @@
-// Vista - SOLO muestra y captura entrada
 package proj.food.vista.implementation.customer;
 
 import proj.food.controller.CustomerViewController;
 import proj.food.entity.CustomerEntity;
 import proj.food.vista.interfaces.CustomerView;
+import proj.food.vista.mediatr.MediatorView;
+import proj.food.vista.mediatr.MediatorViewImpl;
 
 import java.util.List;
 import java.util.Scanner;
@@ -11,10 +12,10 @@ import java.util.Scanner;
 public class CustomerViewConsole implements CustomerView {
 
     private CustomerViewController controller;
-    private Scanner scanner;
+    private Scanner scanner = new Scanner(System.in);
+    private MediatorView mediator;
 
     public CustomerViewConsole() {
-        this.scanner = new Scanner(System.in);
     }
 
     @Override
@@ -56,5 +57,10 @@ public class CustomerViewConsole implements CustomerView {
     public void exit() {
         System.out.println("Exiting Customer View...");
         scanner.close();
+    }
+
+    @Override
+    public void setMediator(MediatorView mv) {
+        this.mediator = mv;
     }
 }

@@ -1,4 +1,6 @@
 package proj.food.vista.interfaces;
 
-public interface FoodView {
+public interface FoodView  extends ViewApplication {
+
+    void showMenu();
 }

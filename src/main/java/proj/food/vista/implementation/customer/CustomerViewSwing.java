@@ -3,6 +3,7 @@ package proj.food.vista.implementation.customer;
 import proj.food.controller.CustomerViewController;
 import proj.food.entity.CustomerEntity;
 import proj.food.vista.interfaces.CustomerView;
+import proj.food.vista.mediatr.MediatorView;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -11,18 +12,28 @@ import java.util.List;
 
 public class CustomerViewSwing extends JFrame implements CustomerView {
 
-    private final CustomerViewController controller;
+    private CustomerViewController controller;
     private final DefaultTableModel tableModel;
     private final JLabel statusLabel;
+    // mediator
+    private MediatorView mediator;
 
     public CustomerViewSwing() {
-        this.controller = new CustomerViewController(this);
         this.tableModel = new DefaultTableModel(new String[]{"ID", "Name"}, 0) {
             @Override
-            public boolean isCellEditable(int row, int column) { return false; }
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
         };
         this.statusLabel = new JLabel(" ");
         buildUI();
+    }
+
+    public CustomerViewController getController() {
+        if (controller == null) {
+            controller = new CustomerViewController(this);
+        }
+        return controller;
     }
 
     private void buildUI() {
@@ -42,10 +53,10 @@ public class CustomerViewSwing extends JFrame implements CustomerView {
         table.getTableHeader().setReorderingAllowed(false);
 
         JButton btnShowList = new JButton("Show Customer List");
-        JButton btnExit     = new JButton("Exit");
+        JButton btnExit = new JButton("Exit");
 
-        btnShowList.addActionListener(e -> controller.processMenuOption("1"));
-        btnExit.addActionListener(e     -> controller.processMenuOption("2"));
+        btnShowList.addActionListener(e -> getController().processMenuOption("1"));
+        btnExit.addActionListener(e -> getController().processMenuOption("2"));
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 12, 8));
         buttonPanel.add(btnShowList);
@@ -57,9 +68,9 @@ public class CustomerViewSwing extends JFrame implements CustomerView {
         bottomPanel.add(buttonPanel, BorderLayout.NORTH);
         bottomPanel.add(statusLabel, BorderLayout.SOUTH);
 
-        add(header,                        BorderLayout.NORTH);
-        add(new JScrollPane(table),        BorderLayout.CENTER);
-        add(bottomPanel,                   BorderLayout.SOUTH);
+        add(header, BorderLayout.NORTH);
+        add(new JScrollPane(table), BorderLayout.CENTER);
+        add(bottomPanel, BorderLayout.SOUTH);
     }
 
     @Override
@@ -86,6 +97,11 @@ public class CustomerViewSwing extends JFrame implements CustomerView {
     @Override
     public void exit() {
         dispose();
+    }
+
+    @Override
+    public void setMediator(MediatorView mv) {
+        this.mediator = mv;
     }
 }
 

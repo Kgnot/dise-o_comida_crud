@@ -4,13 +4,9 @@ import proj.food.entity.CustomerEntity;
 
 import java.util.List;
 
-public interface CustomerView {
-
-    void showMenu();
+public interface CustomerView extends ViewApplication {
 
     void showCustomerList(List<CustomerEntity> entities);
 
     void showError(String message);
-
-    void exit();
 }
