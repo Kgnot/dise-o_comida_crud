@@ -1,0 +1,60 @@
+package proj.food.vista.implementation.fx.food.components;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import proj.food.vista.implementation.fx.shared.StatusBarFX;
+
+public class FoodPane extends BorderPane {
+
+    private final FoodTablePane tablePane = new FoodTablePane();
+    private final StatusBarFX statusBar = new StatusBarFX();
+
+    private final Button btnShowList = new Button("Show Food List");
+    private final Button btnInsert = new Button("Insert Food");
+    private final Button btnUpdate = new Button("Update Food");
+    private final Button btnDelete = new Button("Delete Food");
+    private final Button btnExit = new Button("Exit");
+
+    public FoodPane() {
+        buildUI();
+    }
+
+    private void buildUI() {
+        setPadding(new Insets(10));
+
+        Label header = new Label("=== FOOD MENU ===");
+        header.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+        BorderPane.setAlignment(header, Pos.CENTER);
+        BorderPane.setMargin(header, new Insets(12, 8, 6, 8));
+        setTop(header);
+
+        setCenter(tablePane);
+
+        HBox actions = new HBox(10, btnShowList, btnInsert, btnUpdate, btnDelete, btnExit);
+        actions.setAlignment(Pos.CENTER);
+        actions.setPadding(new Insets(8));
+
+        VBox bottom = new VBox(actions, statusBar);
+        VBox.setVgrow(statusBar, Priority.NEVER);
+        setBottom(bottom);
+    }
+
+    public void addShowListHandler(EventHandler<ActionEvent> handler) { btnShowList.setOnAction(handler); }
+    public void addInsertHandler(EventHandler<ActionEvent> handler) { btnInsert.setOnAction(handler); }
+    public void addUpdateHandler(EventHandler<ActionEvent> handler) { btnUpdate.setOnAction(handler); }
+    public void addDeleteHandler(EventHandler<ActionEvent> handler) { btnDelete.setOnAction(handler); }
+    public void addExitHandler(EventHandler<ActionEvent> handler) { btnExit.setOnAction(handler); }
+
+    public FoodTablePane getTablePane() { return tablePane; }
+
+    public void setStatus(String message) { statusBar.setText(message); }
+}
+
