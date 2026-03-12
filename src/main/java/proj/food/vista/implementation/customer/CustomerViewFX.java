@@ -1,4 +1,4 @@
-package proj.food.vista.implementation;
+package proj.food.vista.implementation.customer;
 
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;

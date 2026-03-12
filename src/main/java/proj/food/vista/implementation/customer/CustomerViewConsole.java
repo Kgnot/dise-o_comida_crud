@@ -1,5 +1,5 @@
 // Vista - SOLO muestra y captura entrada
-package proj.food.vista.implementation;
+package proj.food.vista.implementation.customer;
 
 import proj.food.controller.CustomerViewController;
 import proj.food.entity.CustomerEntity;
@@ -15,7 +15,6 @@ public class CustomerViewConsole implements CustomerView {
 
     public CustomerViewConsole() {
         this.scanner = new Scanner(System.in);
-        this.controller = getController(); // Inicializar controller
     }
 
     @Override
@@ -26,7 +25,7 @@ public class CustomerViewConsole implements CustomerView {
         System.out.print("Choose an option: ");
 
         String option = scanner.nextLine();
-        controller.processMenuOption(option);
+        getController().processMenuOption(option);
     }
 
     private CustomerViewController getController() {
