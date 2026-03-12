@@ -8,9 +8,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import proj.food.controller.FoodViewController;
+import proj.food.services.dto.FoodDto;
 import proj.food.vista.implementation.fx.FxRuntime;
 import proj.food.vista.interfaces.FoodView;
 import proj.food.vista.mediatr.MediatorView;
+
+import java.util.List;
 
 public class FoodViewFX implements FoodView {
 
@@ -75,6 +78,31 @@ public class FoodViewFX implements FoodView {
     @Override
     public void setMediator(MediatorView mediator) {
         this.mediator = mediator;
+    }
+
+    @Override
+    public void showFoodList(List<FoodDto> entities) {
+
+    }
+
+    @Override
+    public void insertFood() {
+
+    }
+
+    @Override
+    public void updateFood() {
+
+    }
+
+    @Override
+    public void deleteFood() {
+
+    }
+
+    @Override
+    public void showError(String message) {
+
     }
 }
 

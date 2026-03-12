@@ -2,7 +2,9 @@ package proj.food;
 
 import proj.food.config.app_context.ApplicationContext;
 import proj.food.vista.ViewType;
+import proj.food.vista.implementation.customer.CustomerViewConsole;
 import proj.food.vista.implementation.customer.CustomerViewFX;
+import proj.food.vista.implementation.food.FoodViewConsole;
 import proj.food.vista.implementation.food.FoodViewFX;
 import proj.food.vista.implementation.start.StartViewImplConsole;
 import proj.food.vista.implementation.start.StartViewImplFX;
@@ -15,8 +17,8 @@ public class MainApp {
 
         MediatorViewImpl mediator = new MediatorViewImpl();
         mediator.addView(ViewType.START, new StartViewImplConsole());
-        mediator.addView(ViewType.FOOD, new FoodViewFX());
-        mediator.addView(ViewType.CUSTOMER, new CustomerViewFX());
+        mediator.addView(ViewType.FOOD, new FoodViewConsole());
+        mediator.addView(ViewType.CUSTOMER, new CustomerViewConsole());
         mediator.changeView(ViewType.START);
     }
 

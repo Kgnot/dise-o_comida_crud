@@ -1,11 +1,13 @@
 package proj.food.vista.implementation.food;
 
 import proj.food.controller.FoodViewController;
+import proj.food.services.dto.FoodDto;
 import proj.food.vista.interfaces.FoodView;
 import proj.food.vista.mediatr.MediatorView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class FoodViewSwing extends JFrame implements FoodView {
 
@@ -67,6 +69,31 @@ public class FoodViewSwing extends JFrame implements FoodView {
     @Override
     public void setMediator(MediatorView mediator) {
         this.mediator = mediator;
+    }
+
+    @Override
+    public void showFoodList(List<FoodDto> entities) {
+
+    }
+
+    @Override
+    public void insertFood() {
+
+    }
+
+    @Override
+    public void updateFood() {
+
+    }
+
+    @Override
+    public void deleteFood() {
+
+    }
+
+    @Override
+    public void showError(String message) {
+
     }
 }
 

@@ -20,15 +20,59 @@ public class FoodViewController {
     public void processMenuOption(String option) {
         switch (option) {
             case "1":
-                List<FoodDto> foods = foodService.findAll();
-                System.out.println("Showing food list... total: " + foods.size());
+                showFoodList();
                 break;
             case "2":
-                System.out.println("Exiting Food View...");
+                foodView.insertFood();
+                break;
+            case "3":
+                foodView.updateFood();
+                break;
+            case "4":
+                foodView.deleteFood();
+                break;
+            case "5":
+                exit();
                 break;
             default:
-                System.out.println("Invalid option");
+                foodView.showError("Invalid option");
                 foodView.showMenu();
         }
+    }
+
+    public void showFoodList() {
+        List<FoodDto> foods = foodService.findAll();
+        foodView.showFoodList(foods);
+    }
+
+    public void insertFood(FoodDto newFood) {
+        try {
+            foodService.save(newFood);
+            showFoodList();
+        } catch (Exception e) {
+            foodView.showError("Error inserting food: " + e.getMessage());
+        }
+    }
+
+    public void updateFood(FoodDto updatedFood) {
+        try {
+            foodService.save(updatedFood);
+            showFoodList();
+        } catch (Exception e) {
+            foodView.showError("Error updating food: " + e.getMessage());
+        }
+    }
+
+    public void deleteFood(FoodDto deletedFood) {
+        try {
+            foodService.deleteById(deletedFood.id());
+            showFoodList();
+        } catch (Exception e) {
+            foodView.showError("Error deleting food: " + e.getMessage());
+        }
+    }
+
+    private void exit() {
+        foodView.exit();
     }
 }
