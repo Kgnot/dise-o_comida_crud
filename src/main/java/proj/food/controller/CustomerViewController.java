@@ -1,5 +1,6 @@
 package proj.food.controller;
 
+import proj.food.config.app_context.ApplicationContext;
 import proj.food.entity.CustomerEntity;
 import proj.food.services.customer.CustomerService;
 import proj.food.vista.interfaces.CustomerView;
@@ -13,6 +14,7 @@ public class CustomerViewController {
 
     public CustomerViewController(CustomerView customerView) {
         this.customerView = customerView;
+        this.customerService = ApplicationContext.getInstance().getBean(CustomerService.class);
     }
 
     public void processMenuOption(String option) {
@@ -30,9 +32,7 @@ public class CustomerViewController {
     }
 
     public void showCustomerList() {
-        List<CustomerEntity> customerEntities = List.of(
-                new CustomerEntity(1L, "John Doe"),
-                new CustomerEntity(2L, "Jane Smith"));
+        List<CustomerEntity> customerEntities = customerService.findAll();
         customerView.showCustomerList(customerEntities);
     }
 
@@ -40,5 +40,3 @@ public class CustomerViewController {
         customerView.exit();
     }
 }
-
-
