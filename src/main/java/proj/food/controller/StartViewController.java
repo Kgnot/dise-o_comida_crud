@@ -1,7 +1,7 @@
 package proj.food.controller;
 
-import proj.food.vista.interfaces.StartView;
-
+import proj.food.view.interfaces.StartView;
+// TODO BORRAR SI NO ES UTIL
 public class StartViewController {
 
     private final StartView view;
@@ -11,20 +11,6 @@ public class StartViewController {
     }
 
     public void processMenuOption(String option) {
-        switch (option) {
-            case "1":
-                view.goToFoodView();
-                break;
-            case "2":
-                view.goToCustomerView();
-                break;
-            case "3":
-                System.out.println("Exiting application...");
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Invalid option. Please try again.");
-                view.showMenu();
-        }
+
     }
 }

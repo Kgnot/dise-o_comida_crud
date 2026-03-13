@@ -3,7 +3,7 @@ package proj.food.controller;
 import proj.food.config.app_context.ApplicationContext;
 import proj.food.services.customer.CustomerService;
 import proj.food.services.dto.CustomerDto;
-import proj.food.vista.interfaces.CustomerView;
+import proj.food.view.interfaces.CustomerView;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class CustomerViewController {
                 break;
             default:
                 customerView.showError("Invalid option");
-                customerView.showMenu();
+                customerView.show();
         }
     }
 
