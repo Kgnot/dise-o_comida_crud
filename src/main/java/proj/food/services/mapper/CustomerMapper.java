@@ -4,7 +4,7 @@ import proj.food.entity.CustomerEntity;
 import proj.food.services.dto.CustomerDto;
 
 import java.util.List;
-
+// Mapper class for converting between CustomerEntity and CustomerDto, providing methods to convert individual objects and lists of objects
 public final class CustomerMapper {
 
     private CustomerMapper() {

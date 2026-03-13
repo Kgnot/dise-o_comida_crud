@@ -6,6 +6,7 @@ import proj.food.config.app_context.database.connect.ConnectDatabase;
 
 import java.util.logging.Logger;
 
+// Factory class to create a Connect instance specifically for PostgreSQL database connections
 public class PostgresDatabaseConnectionFactory extends ConnectFactory {
     private static final Logger logger = Logger.getLogger(PostgresDatabaseConnectionFactory.class.getName());
 

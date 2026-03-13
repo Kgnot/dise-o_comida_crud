@@ -6,6 +6,7 @@ import proj.food.config.app_context.database.connect.ConnectDatabase;
 
 import java.util.logging.Logger;
 
+// Factory class to create a Connect instance specifically for local H2 database connections
 public class LocalDatabaseConnectionFactory extends ConnectFactory {
     private static final Logger logger = Logger.getLogger(LocalDatabaseConnectionFactory.class.getName());
 

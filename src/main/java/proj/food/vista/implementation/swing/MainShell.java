@@ -14,7 +14,7 @@ public class MainShell extends JFrame {
 
     private final CardLayout cardLayout = new CardLayout();
     private final JPanel contentPanel = new JPanel(cardLayout);
-
+    // Views
     private final StartViewSwing startView = new StartViewSwing();
     private final FoodViewSwing foodView = new FoodViewSwing();
     private final CustomerViewSwing customerView = new CustomerViewSwing();

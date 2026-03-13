@@ -18,6 +18,7 @@ public class CustomerViewController {
     }
 
     public void processMenuOption(String option) {
+        // String options keep compatibility across console, Swing, and FX views.
         switch (option) {
             case "1":
                 showCustomerList();

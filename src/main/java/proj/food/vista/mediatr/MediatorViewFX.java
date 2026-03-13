@@ -28,11 +28,13 @@ public class MediatorViewFX implements MediatorView {
         if (!views.containsKey(type)) {
             throw new IllegalStateException("View not registered: " + type);
         }
+        // Always switch views on the JavaFX Application Thread.
         FxRuntime.runOnFxThread(() -> shell.showView(type));
     }
 
     @Override
     public void exitApplication() {
+        // Exit from the FX thread to keep UI shutdown consistent.
         FxRuntime.runOnFxThread(() -> System.exit(0));
     }
 }

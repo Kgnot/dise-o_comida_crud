@@ -27,6 +27,7 @@ public class FoodViewFX implements FoodView {
 
     private FoodViewController getController() {
         if (controller == null) {
+            // Delay controller creation until the user performs an action.
             controller = new FoodViewController(this);
         }
         return controller;
@@ -99,6 +100,7 @@ public class FoodViewFX implements FoodView {
     public void updateFood() {
         FxRuntime.runOnFxThread(() -> {
             FoodDto selected = pane.getTablePane().getSelectedItem();
+            // Apply updates only to the row selected in the table.
             if (selected == null) {
                 showError("Select a food from the table to update");
                 return;
@@ -174,6 +176,7 @@ public class FoodViewFX implements FoodView {
         }
 
         try {
+            // Parse and validate numeric input in one place for insert/update flows.
             return Optional.of(Double.parseDouble(raw.get().trim()));
         } catch (NumberFormatException e) {
             showError("Price must be a number");

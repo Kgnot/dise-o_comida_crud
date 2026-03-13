@@ -13,6 +13,7 @@ public class MainApp {
 
     public static void main(String[] args) {
         ApplicationContext.getInstance();
+        // Keep both UI stacks available so each shell can be launched independently.
         FxRuntime.runOnFxThread(() -> new MainShellFX().show(ViewType.START));
         FlatLightFlatIJTheme.setup();
         SwingUtilities.invokeLater(() -> new MainShell().show(ViewType.START));

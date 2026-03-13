@@ -2,7 +2,7 @@ package proj.food.config;
 
 import java.io.InputStream;
 import java.util.Properties;
-
+// Utility class to load application properties from a properties file and environment variables
 public final class AppProperties {
 
     private static final String FILE_NAME = "application.properties";

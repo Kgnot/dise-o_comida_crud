@@ -8,12 +8,12 @@ import proj.food.vista.mediatr.MediatorView;
 
 import java.util.List;
 import java.util.Scanner;
-
+// Implementation of the CustomerView interface for console-based interaction
 public class CustomerViewConsole implements CustomerView {
 
     private CustomerViewController controller;
     private Scanner scanner = new Scanner(System.in);
-    private MediatorView mediator;
+    private MediatorView mediator; // Reference to the mediator for view navigation
 
     public CustomerViewConsole() {
     }
@@ -38,7 +38,7 @@ public class CustomerViewConsole implements CustomerView {
         }
         return controller;
     }
-
+    // Display the list of customers in the console
     @Override
     public void showCustomerList(List<CustomerDto> dtos) {
         System.out.println("\n=== CUSTOMER LIST ===");
@@ -50,7 +50,7 @@ public class CustomerViewConsole implements CustomerView {
             }
         }
     }
-
+    // Prompt the user for customer details and insert a new customer
     @Override
     public void insertCustomer() {
         System.out.println("Para insertar un usuario necesitamos su nombre:");
@@ -59,7 +59,7 @@ public class CustomerViewConsole implements CustomerView {
         CustomerDto newCustomer = new CustomerDto(null, name);
         getController().insertCustomer(newCustomer);
     }
-
+    // Prompt the user for customer ID and new name to update an existing customer
     @Override
     public void updateCustomer() {
         System.out.println("Para actualizar un usuario necesitamos su ID y su nuevo nombre:");
@@ -77,7 +77,7 @@ public class CustomerViewConsole implements CustomerView {
         CustomerDto updatedCustomer = new CustomerDto(id, newName);
         getController().updateCustomer(updatedCustomer);
     }
-
+    // Prompt the user for customer ID to delete a customer
     @Override
     public void deleteCustomer() {
         System.out.println("Para eliminar un usuario necesitamos su ID:");

@@ -10,7 +10,7 @@ public class CustomerPanel extends JPanel {
 
     private final CustomerTablePanel tablePanel = new CustomerTablePanel();
     private final StatusBar statusBar  = new StatusBar();
-
+    // Action buttons
     private final JButton btnShowList = new JButton("Show Customer List");
     private final JButton btnInsert   = new JButton("Insert Customer");
     private final JButton btnUpdate   = new JButton("Update Customer");
@@ -20,7 +20,7 @@ public class CustomerPanel extends JPanel {
     public CustomerPanel() {
         buildUI();
     }
-
+    // --- UI construction ---
     private void buildUI() {
         setLayout(new BorderLayout(10, 10));
 

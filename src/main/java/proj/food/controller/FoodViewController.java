@@ -18,6 +18,7 @@ public class FoodViewController {
     }
 
     public void processMenuOption(String option) {
+        // String options keep compatibility across console, Swing, and FX views.
         switch (option) {
             case "1":
                 showFoodList();
@@ -44,7 +45,7 @@ public class FoodViewController {
         List<FoodDto> foods = foodService.findAll();
         foodView.showFoodList(foods);
     }
-
+    // To insert a new food
     public void insertFood(FoodDto newFood) {
         try {
             foodService.save(newFood);
@@ -53,6 +54,7 @@ public class FoodViewController {
             foodView.showError("Error inserting food: " + e.getMessage());
         }
     }
+    // The update and delete methods receive the FoodDto to be updated/deleted, which can be obtained from the view's table selection.
 
     public void updateFood(FoodDto updatedFood) {
         try {

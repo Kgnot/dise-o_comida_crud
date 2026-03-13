@@ -24,6 +24,7 @@ public class MainShellFX {
 
     private final Stage stage = new Stage();
     private final StackPane contentPane = new StackPane();
+    // Keep one node per screen and swap them in the center container.
     private final Map<ViewType, Node> views = new EnumMap<>(ViewType.class);
 
     private final StartViewImplFX startView = new StartViewImplFX();
@@ -68,6 +69,7 @@ public class MainShellFX {
         btnFood.setOnAction(e -> showView(ViewType.FOOD));
         btnCustomer.setOnAction(e -> showView(ViewType.CUSTOMER));
         btnExit.setOnAction(e -> {
+            // Delegate app shutdown when a mediator is available.
             if (mediator != null) {
                 mediator.exitApplication();
             } else {
@@ -90,6 +92,7 @@ public class MainShellFX {
     }
 
     private void wireMediator() {
+        // Wire all screens once so each view can navigate through the mediator.
         mediator = new MediatorViewFX(this);
         mediator.addView(ViewType.START, startView);
         mediator.addView(ViewType.FOOD, foodView);
@@ -101,6 +104,7 @@ public class MainShellFX {
         if (node == null) {
             throw new IllegalStateException("View not registered in shell: " + type);
         }
+        // Replace the current content with the selected view.
         contentPane.getChildren().setAll(node);
     }
 
@@ -110,4 +114,3 @@ public class MainShellFX {
         stage.toFront();
     }
 }
-

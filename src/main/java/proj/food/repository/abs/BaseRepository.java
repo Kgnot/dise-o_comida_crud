@@ -32,6 +32,7 @@ public abstract class BaseRepository<T, ID> {
         try {
             em.getTransaction().begin();
             ID id = extractId(entity);
+            // Null id means a new entity; otherwise JPA merges detached state.
             if (id == null) {
                 em.persist(entity);
             } else {
@@ -41,6 +42,7 @@ public abstract class BaseRepository<T, ID> {
             em.getTransaction().commit();
         } catch (RuntimeException e) {
             if (em.getTransaction().isActive()) {
+                // Roll back partial work to keep repository operations atomic.
                 em.getTransaction().rollback();
             }
             throw e;

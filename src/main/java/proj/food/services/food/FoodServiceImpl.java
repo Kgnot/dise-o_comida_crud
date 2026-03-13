@@ -5,7 +5,7 @@ import proj.food.services.dto.FoodDto;
 import proj.food.services.mapper.FoodMapper;
 
 import java.util.List;
-
+// Service implementation for managing food-related operations, providing methods to find, save, and delete food items
 public class FoodServiceImpl implements FoodService {
 
     private final FoodRepository foodRepository;

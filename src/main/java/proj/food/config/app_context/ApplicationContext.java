@@ -16,11 +16,11 @@ import proj.food.services.food.FoodService;
 import java.util.HashMap;
 import java.util.Map;
 
-// Context application for managing dependencies and configurations in the food ordering system
+// Application-wide context responsible for wiring and exposing shared dependencies.
 public final class ApplicationContext {
-    // make it a singleton to ensure only one instance manages the application context
+    // Singleton instance used by controllers and factories.
     private static final ApplicationContext INSTANCE = new ApplicationContext();
-    // necessary to store beans
+    // In-memory registry of app beans.
     private final Map<Class<?>, Object> beans = new HashMap<>();
 
     private ApplicationContext() {
@@ -30,7 +30,7 @@ public final class ApplicationContext {
     public static ApplicationContext getInstance() {
         return INSTANCE;
     }
-    // to obtain a bean of specified class type.
+    // Resolve a bean by type from the local registry.
     public <T> T getBean(Class<T> type) {
         Object bean = beans.get(type);
         if (bean == null) {
@@ -38,11 +38,11 @@ public final class ApplicationContext {
         }
         return type.cast(bean);
     }
-    // to register an bean in the map
+    // Register a bean instance under its class key.
     private <T> void registerBean(Class<T> type, T instance) {
         beans.put(type, instance);
     }
-    // here we initialize all necesary componentes
+    // Build and register repositories/services once during startup.
     private void initialize() {
         ConnectFactory connectFactory = createConnectFactory();
         Connect connect = connectFactory.getConnectInstance();
@@ -63,7 +63,7 @@ public final class ApplicationContext {
         registerBean(CustomerService.class, customerService);
         registerBean(FoodService.class, foodService);
     }
-    // this is to create the connection facotry based on config properties
+    // Select database provider from properties with a local fallback.
     private ConnectFactory createConnectFactory() {
         String provider = AppProperties.getOptional("APP_DATABASE_PROVIDER");
         String selected = provider == null || provider.isBlank() ? "local" : provider.trim().toLowerCase();

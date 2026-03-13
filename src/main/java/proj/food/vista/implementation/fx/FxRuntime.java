@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public final class FxRuntime {
 
     private static final AtomicBoolean STARTED = new AtomicBoolean(false);
+    // Gate all callers until JavaFX startup has completed exactly once.
     private static final CountDownLatch LATCH = new CountDownLatch(1);
 
     private FxRuntime() {
@@ -19,6 +20,7 @@ public final class FxRuntime {
             action.run();
             return;
         }
+        // Schedule UI work when called from non-FX threads.
         Platform.runLater(action);
     }
 
@@ -38,4 +40,3 @@ public final class FxRuntime {
         }
     }
 }
-

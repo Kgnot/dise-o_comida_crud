@@ -27,6 +27,7 @@ public class CustomerViewFX implements CustomerView {
 
     private CustomerViewController getController() {
         if (controller == null) {
+            // Lazily create the controller when the first action is triggered.
             controller = new CustomerViewController(this);
         }
         return controller;
@@ -57,6 +58,7 @@ public class CustomerViewFX implements CustomerView {
                 pane.setStatus("No customers found.");
                 return;
             }
+            // Rebuild the table from DTOs returned by the controller layer.
             pane.getTablePane().populate(entities);
             pane.setStatus(entities.size() + " customer(s) loaded.");
         });
@@ -89,6 +91,7 @@ public class CustomerViewFX implements CustomerView {
     public void updateCustomer() {
         FxRuntime.runOnFxThread(() -> {
             CustomerDto selected = pane.getTablePane().getSelectedItem();
+            // Updates operate only on the currently selected row.
             if (selected == null) {
                 showError("Select a customer from the table to update");
                 return;
@@ -118,6 +121,7 @@ public class CustomerViewFX implements CustomerView {
     public void deleteCustomer() {
         FxRuntime.runOnFxThread(() -> {
             CustomerDto selected = pane.getTablePane().getSelectedItem();
+            // Deletion also depends on table selection to avoid accidental IDs.
             if (selected == null) {
                 showError("Select a customer from the table to delete");
                 return;
