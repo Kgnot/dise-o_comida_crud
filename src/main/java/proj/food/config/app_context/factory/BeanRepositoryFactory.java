@@ -8,9 +8,9 @@ import proj.food.repository.food.FoodRepository;
 import proj.food.repository.food.FoodRepositoryImpl;
 
 // Factory class to create instances of repositories based on configuration properties
-public final class RepositoryFactory {
+public final class BeanRepositoryFactory {
 
-    private RepositoryFactory() {
+    private BeanRepositoryFactory() {
     }
 
     public static CustomerRepository createCustomerRepository(EntityManager entityManager) {

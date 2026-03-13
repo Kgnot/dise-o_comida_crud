@@ -41,11 +41,13 @@ public class CustomerViewController {
         }
     }
 
+    // Fetches the list of customers from the service layer and displays it in the view.
     public void showCustomerList() {
         List<CustomerDto> customerDtos = customerService.findAll();
         customerView.showCustomerList(customerDtos);
     }
 
+    // Takes a CustomerDto from the view and attempts to save it using the service layer, then refreshes the list.
     public void insertCustomer(CustomerDto newCustomer) {
         try {
             customerService.save(newCustomer);
@@ -55,6 +57,7 @@ public class CustomerViewController {
         }
     }
 
+    // Takes an updated CustomerDto from the view and attempts to save it using the service layer, then refreshes the list.
     public void updateCustomer(CustomerDto updatedCustomer) {
         try {
             customerService.save(updatedCustomer);

@@ -9,9 +9,9 @@ import proj.food.services.food.FoodService;
 import proj.food.services.food.FoodServiceImpl;
 
 // Factory class to create instances of services based on configuration properties
-public final class ServiceFactory {
+public final class BeanServiceFactory {
 
-    private ServiceFactory() {
+    private BeanServiceFactory() {
     }
 
     public static CustomerService createCustomerService(CustomerRepository customerRepository) {

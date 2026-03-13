@@ -5,7 +5,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextInputDialog;
 import proj.food.controller.CustomerViewController;
 import proj.food.services.dto.CustomerDto;
-import proj.food.view.ViewType;
 import proj.food.view.implementation.fx.FxRuntime;
 import proj.food.view.implementation.fx.customer.components.CustomerPane;
 import proj.food.view.interfaces.CustomerView;

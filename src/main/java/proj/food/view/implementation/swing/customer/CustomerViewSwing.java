@@ -2,7 +2,6 @@ package proj.food.view.implementation.swing.customer;
 
 import proj.food.controller.CustomerViewController;
 import proj.food.services.dto.CustomerDto;
-import proj.food.view.ViewType;
 import proj.food.view.implementation.swing.customer.components.CustomerPanel;
 import proj.food.view.interfaces.CustomerView;
 

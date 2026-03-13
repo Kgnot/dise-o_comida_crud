@@ -3,11 +3,11 @@ package proj.food.view.implementation.fx.start;
 import proj.food.view.implementation.fx.start.components.StartPane;
 import proj.food.view.interfaces.StartView;
 
-public class StartViewImplFX implements StartView {
+public class StartViewFX implements StartView {
 
     private final StartPane pane;
 
-    public StartViewImplFX() {
+    public StartViewFX() {
         this.pane = new StartPane();
     }
 

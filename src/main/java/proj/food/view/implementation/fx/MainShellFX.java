@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import proj.food.view.ViewType;
 import proj.food.view.implementation.fx.customer.CustomerViewFX;
 import proj.food.view.implementation.fx.food.FoodViewFX;
-import proj.food.view.implementation.fx.start.StartViewImplFX;
+import proj.food.view.implementation.fx.start.StartViewFX;
 import proj.food.view.shell.Shell;
 
 import java.util.EnumMap;
@@ -25,9 +25,9 @@ public class MainShellFX implements Shell {
     private final StackPane contentPane = new StackPane();
     private final Map<ViewType, Node> nodes = new EnumMap<>(ViewType.class);
 
-    private final StartViewImplFX  startView    = new StartViewImplFX();
-    private final FoodViewFX       foodView     = new FoodViewFX();
-    private final CustomerViewFX   customerView = new CustomerViewFX();
+    private final StartViewFX startView = new StartViewFX();
+    private final FoodViewFX foodView = new FoodViewFX();
+    private final CustomerViewFX customerView = new CustomerViewFX();
 
     public static MainShellFX create() {
         return new MainShellFX();
@@ -39,8 +39,8 @@ public class MainShellFX implements Shell {
     }
 
     private void initViews() {
-        nodes.put(ViewType.START,    startView.getPane());
-        nodes.put(ViewType.FOOD,     foodView.getPane());
+        nodes.put(ViewType.START, startView.getPane());
+        nodes.put(ViewType.FOOD, foodView.getPane());
         nodes.put(ViewType.CUSTOMER, customerView.getPane());
     }
 
@@ -69,15 +69,15 @@ public class MainShellFX implements Shell {
         Label title = new Label("Plataforma de Comida");
         title.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
 
-        Button btnStart    = buildNavButton("Inicio");
-        Button btnFood     = buildNavButton("Comida");
+        Button btnStart = buildNavButton("Inicio");
+        Button btnFood = buildNavButton("Comida");
         Button btnCustomer = buildNavButton("Clientes");
-        Button btnExit     = buildNavButton("Salir");
+        Button btnExit = buildNavButton("Salir");
 
-        btnStart.setOnAction(e    -> navigate(ViewType.START));
-        btnFood.setOnAction(e     -> navigate(ViewType.FOOD));
+        btnStart.setOnAction(e -> navigate(ViewType.START));
+        btnFood.setOnAction(e -> navigate(ViewType.FOOD));
         btnCustomer.setOnAction(e -> navigate(ViewType.CUSTOMER));
-        btnExit.setOnAction(e     -> System.exit(0));
+        btnExit.setOnAction(e -> System.exit(0));
 
         VBox spacer = new VBox();
         VBox.setVgrow(spacer, Priority.ALWAYS);

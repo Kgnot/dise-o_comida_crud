@@ -2,8 +2,9 @@ package proj.food.config.app_context;
 
 import jakarta.persistence.EntityManager;
 import proj.food.config.AppProperties;
-import proj.food.config.app_context.factory.RepositoryFactory;
-import proj.food.config.app_context.factory.ServiceFactory;
+import proj.food.config.app_context.factory.BeanConnectFactory;
+import proj.food.config.app_context.factory.BeanRepositoryFactory;
+import proj.food.config.app_context.factory.BeanServiceFactory;
 import proj.food.config.app_context.database.connect.Connect;
 import proj.food.config.app_context.database.factory.ConnectFactory;
 import proj.food.config.app_context.database.factory.LocalDatabaseConnectionFactory;
@@ -44,7 +45,7 @@ public final class ApplicationContext {
     }
     // Build and register repositories/services once during startup.
     private void initialize() {
-        ConnectFactory connectFactory = createConnectFactory();
+        ConnectFactory connectFactory = BeanConnectFactory.createConnectFactory();
         Connect connect = connectFactory.getConnectInstance();
         // create the entity manager
         EntityManager entityManager = connect.getEntityManagerFactory();
@@ -53,25 +54,15 @@ public final class ApplicationContext {
         registerBean(Connect.class, connect);
         registerBean(EntityManager.class, entityManager);
         // this is create the repositories and services based on the factory and register them in the context
-        CustomerRepository customerRepository = RepositoryFactory.createCustomerRepository(entityManager);
-        FoodRepository foodRepository = RepositoryFactory.createFoodRepository(entityManager);
+        CustomerRepository customerRepository = BeanRepositoryFactory.createCustomerRepository(entityManager);
+        FoodRepository foodRepository = BeanRepositoryFactory.createFoodRepository(entityManager);
         registerBean(CustomerRepository.class, customerRepository);
         registerBean(FoodRepository.class, foodRepository);
 
-        CustomerService customerService = ServiceFactory.createCustomerService(customerRepository);
-        FoodService foodService = ServiceFactory.createFoodService(foodRepository);
+        CustomerService customerService = BeanServiceFactory.createCustomerService(customerRepository);
+        FoodService foodService = BeanServiceFactory.createFoodService(foodRepository);
         registerBean(CustomerService.class, customerService);
         registerBean(FoodService.class, foodService);
     }
-    // Select database provider from properties with a local fallback.
-    private ConnectFactory createConnectFactory() {
-        String provider = AppProperties.getOptional("APP_DATABASE_PROVIDER");
-        String selected = provider == null || provider.isBlank() ? "local" : provider.trim().toLowerCase();
 
-        return switch (selected) {
-            case "postgres" -> new PostgresDatabaseConnectionFactory();
-            case "local" -> new LocalDatabaseConnectionFactory();
-            default -> throw new IllegalStateException("Proveedor de base de datos no soportado: " + selected);
-        };
-    }
 }
