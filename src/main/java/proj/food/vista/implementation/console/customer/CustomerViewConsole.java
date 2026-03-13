@@ -1,4 +1,4 @@
-package proj.food.vista.implementation.customer;
+package proj.food.vista.implementation.console.customer;
 
 import proj.food.controller.CustomerViewController;
 import proj.food.services.dto.CustomerDto;

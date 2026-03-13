@@ -1,4 +1,4 @@
-package proj.food.vista.implementation.food;
+package proj.food.vista.implementation.console.food;
 
 import proj.food.controller.FoodViewController;
 import proj.food.services.dto.FoodDto;
