@@ -48,7 +48,15 @@ public class MainShellFX {
         views.put(ViewType.CUSTOMER, customerView.getPane());
 
         stage.setTitle("Plataforma de Comida");
-        stage.setScene(new Scene(root, 900, 520));
+
+        Scene scene = new Scene(root, 900, 520);
+
+        scene.getStylesheets().add(
+                getClass().getResource("/styles.css").toExternalForm()
+        );
+
+        stage.setScene(scene);
+        stage.setMaximized(true);
     }
 
     private VBox buildSidebar() {
