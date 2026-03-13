@@ -9,7 +9,7 @@ public class StatusBarFX extends HBox {
     private final Label label = new Label(" ");
 
     public StatusBarFX() {
-        setPadding(new Insets(0, 12, 8, 12));
+        getStyleClass().add("status-bar");
         getChildren().add(label);
     }
 

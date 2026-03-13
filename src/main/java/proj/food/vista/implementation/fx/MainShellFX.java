@@ -87,7 +87,7 @@ public class MainShellFX {
     private Button buildNavButton(String text) {
         Button button = new Button(text);
         button.setMaxWidth(Double.MAX_VALUE);
-        button.setStyle("-fx-alignment: center-left;");
+        // Styles applied via CSS
         return button;
     }
 

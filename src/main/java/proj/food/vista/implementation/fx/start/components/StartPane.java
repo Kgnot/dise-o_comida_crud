@@ -14,19 +14,28 @@ public class StartPane extends VBox {
 
     private void buildUI() {
         setAlignment(Pos.CENTER);
-        setSpacing(10);
+        setSpacing(20);
+
+        // Use a container for the hero section
+        VBox heroContainer = new VBox(15);
+        heroContainer.setAlignment(Pos.CENTER);
+        heroContainer.setStyle("-fx-background-color: #f8f9fa; -fx-padding: 40; -fx-background-radius: 10;");
 
         Label title = new Label("Plataforma de Gestión de Comida");
-        title.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
+        title.setStyle("-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;");
 
         Label subtitle = new Label("Sistema de gestión de clientes y alimentos");
+        subtitle.setStyle("-fx-font-size: 16px; -fx-text-fill: #7f8c8d;");
+
+        heroContainer.getChildren().addAll(title, subtitle);
 
         Region topSpacer = new Region();
         Region bottomSpacer = new Region();
         VBox.setVgrow(topSpacer, Priority.ALWAYS);
         VBox.setVgrow(bottomSpacer, Priority.ALWAYS);
 
-        getChildren().addAll(topSpacer, title, subtitle, bottomSpacer);
+        getChildren().addAll(topSpacer, heroContainer, bottomSpacer);
+        setStyle("-fx-background-color: white;");
     }
 }
 

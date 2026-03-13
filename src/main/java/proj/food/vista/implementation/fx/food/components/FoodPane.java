@@ -28,21 +28,31 @@ public class FoodPane extends BorderPane {
     }
 
     private void buildUI() {
-        setPadding(new Insets(10));
+        setPadding(new Insets(20)); // Generous padding
+        setStyle("-fx-background-color: white;"); // Ensure background is white
 
-        Label header = new Label("=== MENÚ DE COMIDA ===");
-        header.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
-        BorderPane.setAlignment(header, Pos.CENTER);
-        BorderPane.setMargin(header, new Insets(12, 8, 6, 8));
+        Label header = new Label("Menú de Comida");
+        header.getStyleClass().add("header-label");
+
+        BorderPane.setAlignment(header, Pos.TOP_LEFT);
+        BorderPane.setMargin(header, new Insets(0, 0, 20, 0));
         setTop(header);
 
         setCenter(tablePane);
 
-        HBox actions = new HBox(10, btnShowList, btnInsert, btnUpdate, btnDelete, btnExit);
-        actions.setAlignment(Pos.CENTER);
-        actions.setPadding(new Insets(8));
+        // Apply styles to buttons
+        btnInsert.getStyleClass().addAll("action-button", "primary");
+        btnUpdate.getStyleClass().addAll("action-button", "primary");
+        btnDelete.getStyleClass().addAll("action-button", "danger");
+        btnShowList.getStyleClass().add("action-button");
+        btnExit.getStyleClass().add("action-button");
+
+        HBox actions = new HBox(12, btnShowList, btnInsert, btnUpdate, btnDelete, btnExit);
+        actions.setAlignment(Pos.CENTER_RIGHT); // Align actions to the right
+        actions.setPadding(new Insets(16, 0, 0, 0));
 
         VBox bottom = new VBox(actions, statusBar);
+        bottom.setSpacing(10);
         VBox.setVgrow(statusBar, Priority.NEVER);
         setBottom(bottom);
     }
