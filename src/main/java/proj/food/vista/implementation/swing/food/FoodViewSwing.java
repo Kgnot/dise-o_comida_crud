@@ -60,24 +60,24 @@ public class FoodViewSwing implements FoodView {
     public void showFoodList(List<FoodDto> entities) {
         panel.getTablePanel().clear();
         if (entities.isEmpty()) {
-            panel.setStatus("No foods found.");
+            panel.setStatus("No se encontró comida.");
             return;
         }
         panel.getTablePanel().populate(entities);
-        panel.setStatus(entities.size() + " food item(s) loaded.");
+        panel.setStatus(entities.size() + " elemento(s) de comida cargado(s).");
     }
 
     @Override
     public void insertFood() {
-        String name = JOptionPane.showInputDialog(panel, "Name:", "Insert Food", JOptionPane.PLAIN_MESSAGE);
+        String name = JOptionPane.showInputDialog(panel, "Nombre:", "Insertar Comida", JOptionPane.PLAIN_MESSAGE);
         if (name == null) return;
         String cleanName = name.trim();
         if (cleanName.isEmpty()) {
-            showError("Name is required");
+            showError("El nombre es obligatorio");
             return;
         }
         // Price input
-        String priceText = JOptionPane.showInputDialog(panel, "Price:", "Insert Food", JOptionPane.PLAIN_MESSAGE);
+        String priceText = JOptionPane.showInputDialog(panel, "Precio:", "Insertar Comida", JOptionPane.PLAIN_MESSAGE);
         if (priceText == null) return;
         Double price = parsePrice(priceText);
         if (price == null) return;
@@ -89,7 +89,7 @@ public class FoodViewSwing implements FoodView {
         int row = panel.getTablePanel().getSelectedRow();
         // The selected row is the source of truth for id and current values.
         if (row < 0) {
-            showError("Select a food from the table to update");
+            showError("Seleccione una comida de la tabla para actualizar");
             return;
         }
 
@@ -97,32 +97,32 @@ public class FoodViewSwing implements FoodView {
         Object currentName = panel.getTablePanel().getValueAt(row, 1);
         Object currentPrice = panel.getTablePanel().getValueAt(row, 2);
         // Prompt the user for new name and price, pre-filling with current values
-        String name = JOptionPane.showInputDialog(panel, "New name:", currentName == null ? "" : currentName.toString());
+        String name = JOptionPane.showInputDialog(panel, "Nuevo nombre:", currentName == null ? "" : currentName.toString());
         if (name == null) return;
         String cleanName = name.trim();
         if (cleanName.isEmpty()) {
-            showError("Name is required");
+            showError("El nombre es obligatorio");
             return;
         }
         // Price input with current price pre-filled
-        String priceText = JOptionPane.showInputDialog(panel, "New price:", currentPrice == null ? "" : currentPrice.toString());
+        String priceText = JOptionPane.showInputDialog(panel, "Nuevo precio:", currentPrice == null ? "" : currentPrice.toString());
         if (priceText == null) return;
         Double price = parsePrice(priceText);
         if (price == null) return;
-        getController().insertFood(new FoodDto(null, cleanName, price));
+        getController().updateFood(new FoodDto(id, cleanName, price));
     }
 
     @Override
     public void deleteFood() {
         int row = panel.getTablePanel().getSelectedRow();
         if (row < 0) {
-            showError("Select a food from the table to delete");
+            showError("Seleccione una comida de la tabla para eliminar");
             return;
         }
 
         Long id = Long.valueOf(panel.getTablePanel().getValueAt(row, 0).toString());
         int confirm = JOptionPane.showConfirmDialog(
-                panel, "Delete food #" + id + "?", "Delete Food",
+                panel, "¿Eliminar comida #" + id + "?", "Eliminar Comida",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (confirm == JOptionPane.OK_OPTION) {
@@ -139,7 +139,7 @@ public class FoodViewSwing implements FoodView {
         try {
             return Double.parseDouble(text.trim());
         } catch (NumberFormatException e) {
-            showError("Price must be a number");
+            showError("El precio debe ser un número");
             return null;
         }
     }

@@ -25,7 +25,7 @@ public class MainShell extends JFrame {
     }
 
     private void buildUI() {
-        setTitle("Food Platform");
+        setTitle("Plataforma de Comida");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(900, 520);
         setLocationRelativeTo(null);
@@ -51,7 +51,7 @@ public class MainShell extends JFrame {
         ));
 
         // ---- HEADER ----
-        JLabel title = new JLabel("Food Platform");
+        JLabel title = new JLabel("Plataforma de Comida");
         title.setFont(title.getFont().deriveFont(Font.BOLD, 16f));
         title.setBorder(BorderFactory.createEmptyBorder(20,16,20,16));
 

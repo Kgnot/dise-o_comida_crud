@@ -51,7 +51,7 @@ public class FoodViewConsole implements FoodView {
     @Override
     public void insertFood() {
         System.out.println("Para insertar comida necesitamos nombre y precio:");
-        System.out.print("Name: ");
+        System.out.print("Nombre: ");
         String name = scanner.nextLine();
         Double price = readPrice();
         if (price == null) {
@@ -70,7 +70,7 @@ public class FoodViewConsole implements FoodView {
             return;
         }
 
-        System.out.print("New Name: ");
+        System.out.print("Nuevo Nombre: ");
         String newName = scanner.nextLine();
         Double newPrice = readPrice();
         if (newPrice == null) {
@@ -99,18 +99,18 @@ public class FoodViewConsole implements FoodView {
         try {
             return Long.parseLong(idStr);
         } catch (NumberFormatException e) {
-            showError("ID must be a number");
+            showError("El ID debe ser un número");
             return null;
         }
     }
 
     private Double readPrice() {
-        System.out.print("Price: ");
+        System.out.print("Precio: ");
         String priceStr = scanner.nextLine();
         try {
             return Double.parseDouble(priceStr);
         } catch (NumberFormatException e) {
-            showError("Price must be a number");
+            showError("El precio debe ser un número");
             return null;
         }
     }
@@ -122,7 +122,7 @@ public class FoodViewConsole implements FoodView {
 
     @Override
     public void exit() {
-        System.out.println("Exiting Food View...");
+        System.out.println("Saliendo de la Vista de Comida...");
         scanner.close();
         if (mediator != null) {
             mediator.changeView(ViewType.START);

@@ -16,10 +16,10 @@ public class StartPane extends VBox {
         setAlignment(Pos.CENTER);
         setSpacing(10);
 
-        Label title = new Label("Food Management Platform");
+        Label title = new Label("Plataforma de Gestión de Comida");
         title.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
 
-        Label subtitle = new Label("Sistema de gestion de clientes y alimentos");
+        Label subtitle = new Label("Sistema de gestión de clientes y alimentos");
 
         Region topSpacer = new Region();
         Region bottomSpacer = new Region();

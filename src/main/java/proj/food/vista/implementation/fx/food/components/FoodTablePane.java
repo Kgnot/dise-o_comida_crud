@@ -23,11 +23,11 @@ public class FoodTablePane extends VBox {
                 c.getValue().id() == null ? "" : c.getValue().id().toString()));
         colId.setPrefWidth(80);
 
-        TableColumn<FoodDto, String> colName = new TableColumn<>("Name");
+        TableColumn<FoodDto, String> colName = new TableColumn<>("Nombre");
         colName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().name() == null ? "" : c.getValue().name()));
         colName.setPrefWidth(240);
 
-        TableColumn<FoodDto, String> colPrice = new TableColumn<>("Price");
+        TableColumn<FoodDto, String> colPrice = new TableColumn<>("Precio");
         colPrice.setCellValueFactory(c -> new SimpleStringProperty(
                 c.getValue().price() == null ? "" : c.getValue().price().toString()));
         colPrice.setPrefWidth(140);

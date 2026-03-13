@@ -55,12 +55,12 @@ public class CustomerViewFX implements CustomerView {
         FxRuntime.runOnFxThread(() -> {
             pane.getTablePane().clear();
             if (entities.isEmpty()) {
-                pane.setStatus("No customers found.");
+                pane.setStatus("No se encontraron clientes.");
                 return;
             }
             // Rebuild the table from DTOs returned by the controller layer.
             pane.getTablePane().populate(entities);
-            pane.setStatus(entities.size() + " customer(s) loaded.");
+            pane.setStatus(entities.size() + " cliente(s) cargado(s).");
         });
     }
 
@@ -68,9 +68,9 @@ public class CustomerViewFX implements CustomerView {
     public void insertCustomer() {
         FxRuntime.runOnFxThread(() -> {
             TextInputDialog dialog = new TextInputDialog();
-            dialog.setTitle("Insert Customer");
-            dialog.setHeaderText("Create new customer");
-            dialog.setContentText("Name:");
+            dialog.setTitle("Insertar Cliente");
+            dialog.setHeaderText("Crear nuevo cliente");
+            dialog.setContentText("Nombre:");
 
             Optional<String> result = dialog.showAndWait();
             if (result.isEmpty()) {
@@ -79,7 +79,7 @@ public class CustomerViewFX implements CustomerView {
 
             String name = result.get().trim();
             if (name.isEmpty()) {
-                showError("Name is required");
+                showError("El nombre es obligatorio");
                 return;
             }
 
@@ -93,14 +93,14 @@ public class CustomerViewFX implements CustomerView {
             CustomerDto selected = pane.getTablePane().getSelectedItem();
             // Updates operate only on the currently selected row.
             if (selected == null) {
-                showError("Select a customer from the table to update");
+                showError("Seleccione un cliente de la tabla para actualizar");
                 return;
             }
 
             TextInputDialog dialog = new TextInputDialog(selected.name());
-            dialog.setTitle("Update Customer");
-            dialog.setHeaderText("Update customer #" + selected.id());
-            dialog.setContentText("New name:");
+            dialog.setTitle("Actualizar Cliente");
+            dialog.setHeaderText("Actualizar cliente #" + selected.id());
+            dialog.setContentText("Nuevo nombre:");
 
             Optional<String> result = dialog.showAndWait();
             if (result.isEmpty()) {
@@ -109,7 +109,7 @@ public class CustomerViewFX implements CustomerView {
 
             String newName = result.get().trim();
             if (newName.isEmpty()) {
-                showError("Name is required");
+                showError("El nombre es obligatorio");
                 return;
             }
 
@@ -123,14 +123,14 @@ public class CustomerViewFX implements CustomerView {
             CustomerDto selected = pane.getTablePane().getSelectedItem();
             // Deletion also depends on table selection to avoid accidental IDs.
             if (selected == null) {
-                showError("Select a customer from the table to delete");
+                showError("Seleccione un cliente de la tabla para eliminar");
                 return;
             }
 
             Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-            confirm.setTitle("Delete Customer");
-            confirm.setHeaderText("Delete customer #" + selected.id());
-            confirm.setContentText("Are you sure?");
+            confirm.setTitle("Eliminar Cliente");
+            confirm.setHeaderText("Eliminar cliente #" + selected.id());
+            confirm.setContentText("¿Está seguro?");
 
             Optional<ButtonType> choice = confirm.showAndWait();
             if (choice.isPresent() && choice.get() == ButtonType.OK) {

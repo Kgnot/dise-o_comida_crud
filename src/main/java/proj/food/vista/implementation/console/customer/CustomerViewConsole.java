@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class CustomerViewConsole implements CustomerView {
 
     private CustomerViewController controller;
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     private MediatorView mediator; // Reference to the mediator for view navigation
 
     public CustomerViewConsole() {
@@ -41,20 +41,20 @@ public class CustomerViewConsole implements CustomerView {
     // Display the list of customers in the console
     @Override
     public void showCustomerList(List<CustomerDto> dtos) {
-        System.out.println("\n=== CUSTOMER LIST ===");
+        System.out.println("\n=== LISTA DE CLIENTES ===");
         if (dtos.isEmpty()) {
-            System.out.println("No customers found.");
+            System.out.println("No se encontraron clientes.");
         } else {
             for (CustomerDto dto : dtos) {
-                System.out.println("ID: " + dto.id() + ", Name: " + dto.name());
+                System.out.println("ID: " + dto.id() + ", Nombre: " + dto.name());
             }
         }
     }
     // Prompt the user for customer details and insert a new customer
     @Override
     public void insertCustomer() {
-        System.out.println("Para insertar un usuario necesitamos su nombre:");
-        System.out.print("Name: ");
+        System.out.println("Para insertar un cliente necesitamos su nombre:");
+        System.out.print("Nombre: ");
         String name = scanner.nextLine();
         CustomerDto newCustomer = new CustomerDto(null, name);
         getController().insertCustomer(newCustomer);
@@ -62,17 +62,17 @@ public class CustomerViewConsole implements CustomerView {
     // Prompt the user for customer ID and new name to update an existing customer
     @Override
     public void updateCustomer() {
-        System.out.println("Para actualizar un usuario necesitamos su ID y su nuevo nombre:");
+        System.out.println("Para actualizar un cliente necesitamos su ID y su nuevo nombre:");
         System.out.print("ID: ");
         String idStr = scanner.nextLine();
         Long id;
         try {
             id = Long.parseLong(idStr);
         } catch (NumberFormatException e) {
-            showError("ID must be a number");
+            showError("El ID debe ser un número");
             return;
         }
-        System.out.print("New Name: ");
+        System.out.print("Nuevo Nombre: ");
         String newName = scanner.nextLine();
         CustomerDto updatedCustomer = new CustomerDto(id, newName);
         getController().updateCustomer(updatedCustomer);
@@ -80,14 +80,14 @@ public class CustomerViewConsole implements CustomerView {
     // Prompt the user for customer ID to delete a customer
     @Override
     public void deleteCustomer() {
-        System.out.println("Para eliminar un usuario necesitamos su ID:");
+        System.out.println("Para eliminar un cliente necesitamos su ID:");
         System.out.print("ID: ");
         String idStr = scanner.nextLine();
         Long id;
         try {
             id = Long.parseLong(idStr);
         } catch (NumberFormatException e) {
-            showError("ID must be a number");
+            showError("El ID debe ser un número");
             return;
         }
         CustomerDto deletedCustomer = new CustomerDto(id, null);
@@ -101,7 +101,7 @@ public class CustomerViewConsole implements CustomerView {
 
     @Override
     public void exit() {
-        System.out.println("Exiting Customer View...");
+        System.out.println("Saliendo de la Vista de Clientes...");
         scanner.close();
         if (mediator != null) {
             mediator.changeView(ViewType.START);

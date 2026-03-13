@@ -11,11 +11,11 @@ public class CustomerPanel extends JPanel {
     private final CustomerTablePanel tablePanel = new CustomerTablePanel();
     private final StatusBar statusBar  = new StatusBar();
     // Action buttons
-    private final JButton btnShowList = new JButton("Show Customer List");
-    private final JButton btnInsert   = new JButton("Insert Customer");
-    private final JButton btnUpdate   = new JButton("Update Customer");
-    private final JButton btnDelete   = new JButton("Delete Customer");
-    private final JButton btnExit     = new JButton("Exit");
+    private final JButton btnShowList = new JButton("Mostrar Lista de Clientes");
+    private final JButton btnInsert   = new JButton("Insertar Cliente");
+    private final JButton btnUpdate   = new JButton("Actualizar Cliente");
+    private final JButton btnDelete   = new JButton("Eliminar Cliente");
+    private final JButton btnExit     = new JButton("Salir");
 
     public CustomerPanel() {
         buildUI();
@@ -24,7 +24,7 @@ public class CustomerPanel extends JPanel {
     private void buildUI() {
         setLayout(new BorderLayout(10, 10));
 
-        JLabel header = new JLabel("=== CUSTOMER MENU ===", SwingConstants.CENTER);
+        JLabel header = new JLabel("=== MENÚ DE CLIENTES ===", SwingConstants.CENTER);
         header.setFont(header.getFont().deriveFont(Font.BOLD, 14f));
         header.setBorder(BorderFactory.createEmptyBorder(12, 8, 6, 8));
 

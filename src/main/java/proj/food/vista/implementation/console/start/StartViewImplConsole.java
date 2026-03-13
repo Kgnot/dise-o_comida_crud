@@ -11,15 +11,16 @@ public class StartViewImplConsole implements StartView {
 
     private StartViewController controller;
     private MediatorView mediator;
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     @Override
     public void showMenu() {
 
-        System.out.println("Bienvenidos a la plataforma de comida!");
-        System.out.println("1. Ir a Food View");
-        System.out.println("2. Ir a Customer View");
-        System.out.println("3. Exit");
+        System.out.println("¡Bienvenidos a la plataforma de comida!");
+        System.out.println("1. Ir a Vista de Comida");
+        System.out.println("2. Ir a Vista de Clientes");
+        System.out.println("3. Salir");
+        System.out.print("Elija una opción: ");
 
         String option = scanner.nextLine();
 

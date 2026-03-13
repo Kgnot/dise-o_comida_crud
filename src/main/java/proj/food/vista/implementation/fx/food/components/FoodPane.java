@@ -17,11 +17,11 @@ public class FoodPane extends BorderPane {
     private final FoodTablePane tablePane = new FoodTablePane();
     private final StatusBarFX statusBar = new StatusBarFX();
 
-    private final Button btnShowList = new Button("Show Food List");
-    private final Button btnInsert = new Button("Insert Food");
-    private final Button btnUpdate = new Button("Update Food");
-    private final Button btnDelete = new Button("Delete Food");
-    private final Button btnExit = new Button("Exit");
+    private final Button btnShowList = new Button("Mostrar Lista de Comida");
+    private final Button btnInsert = new Button("Insertar Comida");
+    private final Button btnUpdate = new Button("Actualizar Comida");
+    private final Button btnDelete = new Button("Eliminar Comida");
+    private final Button btnExit = new Button("Salir");
 
     public FoodPane() {
         buildUI();
@@ -30,7 +30,7 @@ public class FoodPane extends BorderPane {
     private void buildUI() {
         setPadding(new Insets(10));
 
-        Label header = new Label("=== FOOD MENU ===");
+        Label header = new Label("=== MENÚ DE COMIDA ===");
         header.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
         BorderPane.setAlignment(header, Pos.CENTER);
         BorderPane.setMargin(header, new Insets(12, 8, 6, 8));

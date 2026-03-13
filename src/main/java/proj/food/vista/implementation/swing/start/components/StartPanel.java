@@ -13,7 +13,7 @@ public class StartPanel extends JPanel {
 
         setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("Food Management Platform", SwingConstants.CENTER);
+        JLabel title = new JLabel("Plataforma de Gestión de Comida", SwingConstants.CENTER);
         title.setFont(title.getFont().deriveFont(Font.BOLD, 22f));
 
         JLabel subtitle = new JLabel(

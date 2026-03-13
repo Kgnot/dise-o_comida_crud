@@ -179,7 +179,7 @@ public class FoodViewFX implements FoodView {
             // Parse and validate numeric input in one place for insert/update flows.
             return Optional.of(Double.parseDouble(raw.get().trim()));
         } catch (NumberFormatException e) {
-            showError("Price must be a number");
+            showError("El precio debe ser un número");
             return Optional.empty();
         }
     }

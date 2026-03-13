@@ -12,7 +12,7 @@ public class CustomerTablePanel extends JScrollPane {
     private final JTable table;
 
     public CustomerTablePanel() {
-        this.tableModel = new DefaultTableModel(new String[]{"ID", "Name"}, 0) {
+        this.tableModel = new DefaultTableModel(new String[]{"ID", "Nombre"}, 0) {
             @Override
             public boolean isCellEditable(int row, int column) { return false; }
         };

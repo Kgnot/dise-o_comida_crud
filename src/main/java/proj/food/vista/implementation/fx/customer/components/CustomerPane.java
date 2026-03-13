@@ -17,11 +17,11 @@ public class CustomerPane extends BorderPane {
     private final CustomerTablePane tablePane = new CustomerTablePane();
     private final StatusBarFX statusBar = new StatusBarFX();
 
-    private final Button btnShowList = new Button("Show Customer List");
-    private final Button btnInsert = new Button("Insert Customer");
-    private final Button btnUpdate = new Button("Update Customer");
-    private final Button btnDelete = new Button("Delete Customer");
-    private final Button btnExit = new Button("Exit");
+    private final Button btnShowList = new Button("Mostrar Lista de Clientes");
+    private final Button btnInsert = new Button("Insertar Cliente");
+    private final Button btnUpdate = new Button("Actualizar Cliente");
+    private final Button btnDelete = new Button("Eliminar Cliente");
+    private final Button btnExit = new Button("Salir");
 
     public CustomerPane() {
         buildUI();
@@ -30,7 +30,7 @@ public class CustomerPane extends BorderPane {
     private void buildUI() {
         setPadding(new Insets(10));
 
-        Label header = new Label("=== CUSTOMER MENU ===");
+        Label header = new Label("=== MENÚ DE CLIENTES ===");
         header.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
         BorderPane.setAlignment(header, Pos.CENTER);
         BorderPane.setMargin(header, new Insets(12, 8, 6, 8));

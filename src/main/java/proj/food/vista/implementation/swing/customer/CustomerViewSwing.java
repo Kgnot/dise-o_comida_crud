@@ -54,19 +54,19 @@ public class CustomerViewSwing implements CustomerView {
     public void showCustomerList(List<CustomerDto> entities) {
         panel.getTablePanel().clear();
         if (entities.isEmpty()) {
-            panel.setStatus("No customers found.");
+            panel.setStatus("No se encontraron clientes.");
             return;
         }
         panel.getTablePanel().populate(entities);
-        panel.setStatus(entities.size() + " customer(s) loaded.");
+        panel.setStatus(entities.size() + " cliente(s) cargado(s).");
     }
 
     @Override
     public void insertCustomer() {
-        String name = JOptionPane.showInputDialog(panel, "Name:", "Insert Customer", JOptionPane.PLAIN_MESSAGE);
+        String name = JOptionPane.showInputDialog(panel, "Nombre:", "Insertar Cliente", JOptionPane.PLAIN_MESSAGE);
         if (name == null) return;
         String cleanName = name.trim();
-        if (cleanName.isEmpty()) { showError("Name is required"); return; }
+        if (cleanName.isEmpty()) { showError("El nombre es obligatorio"); return; }
 
         getController().insertCustomer(new CustomerDto(null, cleanName));
     }
@@ -74,15 +74,15 @@ public class CustomerViewSwing implements CustomerView {
     @Override
     public void updateCustomer() {
         int row = panel.getTablePanel().getSelectedRow();
-        if (row < 0) { showError("Select a customer from the table to update"); return; }
+        if (row < 0) { showError("Seleccione un cliente de la tabla para actualizar"); return; }
 
         Long id         = Long.valueOf(panel.getTablePanel().getValueAt(row, 0).toString());
         Object nameObj  = panel.getTablePanel().getValueAt(row, 1);
 
-        String newName = JOptionPane.showInputDialog(panel, "New Name:", nameObj == null ? "" : nameObj.toString());
+        String newName = JOptionPane.showInputDialog(panel, "Nuevo Nombre:", nameObj == null ? "" : nameObj.toString());
         if (newName == null) return;
         String cleanName = newName.trim();
-        if (cleanName.isEmpty()) { showError("Name is required"); return; }
+        if (cleanName.isEmpty()) { showError("El nombre es obligatorio"); return; }
 
         getController().updateCustomer(new CustomerDto(id, cleanName));
     }
@@ -90,11 +90,11 @@ public class CustomerViewSwing implements CustomerView {
     @Override
     public void deleteCustomer() {
         int row = panel.getTablePanel().getSelectedRow();
-        if (row < 0) { showError("Select a customer from the table to delete"); return; }
+        if (row < 0) { showError("Seleccione un cliente de la tabla para eliminar"); return; }
 
         Long id = Long.valueOf(panel.getTablePanel().getValueAt(row, 0).toString());
         int confirm = JOptionPane.showConfirmDialog(
-                panel, "Delete customer #" + id + "?", "Delete Customer",
+                panel, "¿Eliminar cliente #" + id + "?", "Eliminar Cliente",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (confirm == JOptionPane.OK_OPTION) {

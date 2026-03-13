@@ -47,7 +47,7 @@ public class MainShellFX {
         views.put(ViewType.FOOD, foodView.getPane());
         views.put(ViewType.CUSTOMER, customerView.getPane());
 
-        stage.setTitle("Food Platform");
+        stage.setTitle("Plataforma de Comida");
         stage.setScene(new Scene(root, 900, 520));
     }
 
@@ -57,7 +57,7 @@ public class MainShellFX {
         sidebar.setPadding(new Insets(20, 10, 16, 10));
         sidebar.setStyle("-fx-border-color: #d0d0d0; -fx-border-width: 0 1 0 0;");
 
-        Label title = new Label("Food Platform");
+        Label title = new Label("Plataforma de Comida");
         title.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
 
         Button btnStart = buildNavButton("Inicio");

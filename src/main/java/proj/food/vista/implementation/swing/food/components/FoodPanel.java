@@ -12,11 +12,11 @@ public class FoodPanel extends JPanel {
     private final FoodTablePanel tablePanel = new FoodTablePanel();
     private final StatusBar statusBar = new StatusBar();
 
-    private final JButton btnShowList = new JButton("Show Food List");
-    private final JButton btnInsert = new JButton("Insert Food");
-    private final JButton btnUpdate = new JButton("Update Food");
-    private final JButton btnDelete = new JButton("Delete Food");
-    private final JButton btnExit = new JButton("Exit");
+    private final JButton btnShowList = new JButton("Mostrar Lista de Comida");
+    private final JButton btnInsert = new JButton("Insertar Comida");
+    private final JButton btnUpdate = new JButton("Actualizar Comida");
+    private final JButton btnDelete = new JButton("Eliminar Comida");
+    private final JButton btnExit = new JButton("Salir");
 
     public FoodPanel() {
         buildUI();
@@ -25,7 +25,7 @@ public class FoodPanel extends JPanel {
     private void buildUI() {
         setLayout(new BorderLayout(10, 10));
 
-        JLabel header = new JLabel("=== FOOD MENU ===", SwingConstants.CENTER);
+        JLabel header = new JLabel("=== MENÚ DE COMIDA ===", SwingConstants.CENTER);
         header.setFont(header.getFont().deriveFont(Font.BOLD, 14f));
         header.setBorder(BorderFactory.createEmptyBorder(12, 8, 6, 8));
 

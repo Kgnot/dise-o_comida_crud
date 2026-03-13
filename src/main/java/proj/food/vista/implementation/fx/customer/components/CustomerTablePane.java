@@ -23,7 +23,7 @@ public class CustomerTablePane extends VBox {
                 c.getValue().id() == null ? "" : c.getValue().id().toString()));
         colId.setPrefWidth(80);
 
-        TableColumn<CustomerDto, String> colName = new TableColumn<>("Name");
+        TableColumn<CustomerDto, String> colName = new TableColumn<>("Nombre");
         colName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().name() == null ? "" : c.getValue().name()));
         colName.setPrefWidth(320);
 
