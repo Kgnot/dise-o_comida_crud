@@ -15,12 +15,13 @@ import proj.food.vista.implementation.fx.customer.CustomerViewFX;
 import proj.food.vista.implementation.fx.food.FoodViewFX;
 import proj.food.vista.implementation.fx.start.StartViewImplFX;
 import proj.food.vista.mediatr.MediatorView;
-import proj.food.vista.mediatr.MediatorViewFX;
+import proj.food.vista.mediatr.MediatorViewShell;
+import proj.food.vista.shell.Shell;
 
 import java.util.EnumMap;
 import java.util.Map;
 
-public class MainShellFX {
+public class MainShellFX implements Shell {
 
     private final Stage stage = new Stage();
     private final StackPane contentPane = new StackPane();
@@ -33,9 +34,14 @@ public class MainShellFX {
 
     private MediatorView mediator;
 
+    public static MainShellFX create() {
+        MainShellFX shell = new MainShellFX();
+        shell.wireMediator();
+        return shell;
+    }
+
     public MainShellFX() {
         buildUI();
-        wireMediator();
     }
 
     private void buildUI() {
@@ -101,7 +107,7 @@ public class MainShellFX {
 
     private void wireMediator() {
         // Wire all screens once so each view can navigate through the mediator.
-        mediator = new MediatorViewFX(this);
+        mediator = new MediatorViewShell(this);
         mediator.addView(ViewType.START, startView);
         mediator.addView(ViewType.FOOD, foodView);
         mediator.addView(ViewType.CUSTOMER, customerView);

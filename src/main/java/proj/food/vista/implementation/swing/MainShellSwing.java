@@ -5,12 +5,13 @@ import proj.food.vista.implementation.swing.customer.CustomerViewSwing;
 import proj.food.vista.implementation.swing.food.FoodViewSwing;
 import proj.food.vista.implementation.swing.start.StartViewSwing;
 import proj.food.vista.mediatr.MediatorView;
-import proj.food.vista.mediatr.MediatorViewSwing;
+import proj.food.vista.mediatr.MediatorViewShell;
+import proj.food.vista.shell.Shell;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainShell extends JFrame {
+public class MainShellSwing extends JFrame implements Shell {
 
     private final CardLayout cardLayout = new CardLayout();
     private final JPanel contentPanel = new JPanel(cardLayout);
@@ -19,9 +20,14 @@ public class MainShell extends JFrame {
     private final FoodViewSwing foodView = new FoodViewSwing();
     private final CustomerViewSwing customerView = new CustomerViewSwing();
 
-    public MainShell() {
+    public static MainShellSwing create() {
+        MainShellSwing shell = new MainShellSwing();
+        shell.wireMediator();
+        return shell;
+    }
+
+    public MainShellSwing() {
         buildUI();
-        wireMediador();
     }
 
     private void buildUI() {
@@ -103,8 +109,8 @@ public class MainShell extends JFrame {
         return btn;
     }
 
-    private void wireMediador() {
-        MediatorView mediator = new MediatorViewSwing(this);
+    private void wireMediator() {
+        MediatorView mediator = new MediatorViewShell(this);
 
         mediator.addView(ViewType.START, startView);
         mediator.addView(ViewType.FOOD, foodView);

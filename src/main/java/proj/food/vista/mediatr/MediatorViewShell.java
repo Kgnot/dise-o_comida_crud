@@ -1,19 +1,18 @@
 package proj.food.vista.mediatr;
 
 import proj.food.vista.ViewType;
-import proj.food.vista.implementation.fx.FxRuntime;
-import proj.food.vista.implementation.fx.MainShellFX;
 import proj.food.vista.interfaces.ViewApplication;
+import proj.food.vista.shell.Shell;
 
 import java.util.HashMap;
 import java.util.Map;
-
-public class MediatorViewFX implements MediatorView {
+// To manage the views in the application using a mediator pattern, allowing for decoupling between the views and the shell
+public class MediatorViewShell implements MediatorView {
 
     private final Map<ViewType, ViewApplication> views = new HashMap<>();
-    private final MainShellFX shell;
+    private final Shell shell;
 
-    public MediatorViewFX(MainShellFX shell) {
+    public MediatorViewShell(Shell shell) {
         this.shell = shell;
     }
 
@@ -28,13 +27,11 @@ public class MediatorViewFX implements MediatorView {
         if (!views.containsKey(type)) {
             throw new IllegalStateException("View not registered: " + type);
         }
-        // Always switch views on the JavaFX Application Thread.
-        FxRuntime.runOnFxThread(() -> shell.showView(type));
+        shell.showView(type);
     }
 
     @Override
     public void exitApplication() {
-        // Exit from the FX thread to keep UI shutdown consistent.
-        FxRuntime.runOnFxThread(() -> System.exit(0));
+        System.exit(0);
     }
 }
